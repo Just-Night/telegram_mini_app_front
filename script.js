@@ -1,7 +1,9 @@
 let clicks = 0;
+const backendUrl = 'https://4194-147-175-186-249.ngrok-free.app'; // замініть на ваш ngrok URL
 
 async function fetchClicks() {
-    const response = await fetch(`/clicks/${Telegram.WebApp.initDataUnsafe.user.id}`);
+    const user_id = Telegram.WebApp.initDataUnsafe.user.id;
+    const response = await fetch(`${backendUrl}/clicks/${user_id}`);
     const data = await response.json();
     clicks = data.clicks;
     document.getElementById('clicks').innerText = `Clicks: ${clicks}`;
@@ -10,7 +12,7 @@ async function fetchClicks() {
 function onButtonClick() {
     clicks += 1;
     document.getElementById('clicks').innerText = `Clicks: ${clicks}`;
-    fetch('/data', {
+    fetch(`${backendUrl}/data`, {
         method: 'POST',
         body: new URLSearchParams({ 'auth': Telegram.WebApp.initData, 'clicks': clicks }),
         headers: {
