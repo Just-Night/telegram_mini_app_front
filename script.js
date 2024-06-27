@@ -1,5 +1,5 @@
 let clicks = 0;
-const backendUrl = 'https://4194-147-175-186-249.ngrok-free.app'; // замініть на ваш ngrok URL
+const backendUrl = 'https://4194-147-175-186-249.ngrok-free.app'; // replace with your ngrok URL
 
 async function fetchClicks() {
     const user_id = Telegram.WebApp.initDataUnsafe.user.id;
