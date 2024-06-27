@@ -7,6 +7,7 @@ async function fetchClicks() {
     const data = await response.json();
     clicks = data.clicks;
     document.getElementById('clicks').innerText = `Clicks: ${clicks}`;
+    document.getElementById('user-id').innerText = `User ID: ${user_id}`;
 }
 
 function onButtonClick() {
