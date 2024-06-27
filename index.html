@@ -7,10 +7,12 @@
 <body>
     <h1>Telegram Authentication</h1>
     <button onclick="authenticate()">Authenticate</button>
+    <button onclick="sendAuthData()">Send All Auth Data</button>
     <script>
+        const API_URL = "https://4194-147-175-186-249.ngrok-free.app";  // URL of your backend
+
         function authenticate() {
             Telegram.WebApp.ready();
-            const initData = Telegram.WebApp.initData;
             const initDataUnsafe = Telegram.WebApp.initDataUnsafe;
 
             if (initDataUnsafe.user) {
@@ -21,7 +23,7 @@
                     last_name: initDataUnsafe.user.last_name,
                 };
 
-                fetch("https://4194-147-175-186-249.ngrok-free.app/verify", {  // URL of your backend
+                fetch(`${API_URL}/verify`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -39,6 +41,26 @@
             } else {
                 alert("User data is not available");
             }
+        }
+
+        function sendAuthData() {
+            Telegram.WebApp.ready();
+            const initData = Telegram.WebApp.initData;
+
+            fetch(`${API_URL}/testauth`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ initData })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert("Data sent successfully! Check the backend logs.");
+            })
+            .catch(error => {
+                console.error("Error sending auth data:", error);
+            });
         }
     </script>
 </body>
