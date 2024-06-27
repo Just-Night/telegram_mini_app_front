@@ -46,3 +46,4 @@ window.addEventListener('load', () => {
 Telegram.WebApp.onEvent('mainButtonClicked', () => {
     onButtonClick();
 });
+
