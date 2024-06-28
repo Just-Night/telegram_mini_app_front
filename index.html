@@ -14,7 +14,7 @@
         function sendAuthData() {
             Telegram.WebApp.ready();
             const initData = Telegram.WebApp.initData;
-            alert(initData);
+            console.log("Data:", initData);
             fetch(`${API_URL}/api/v1/auth/`, {
                 method: "POST",
                 headers: {
