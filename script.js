@@ -1,5 +1,5 @@
 let clicks = 0;
-const backendUrl = 'https://4194-147-175-186-249.ngrok-free.app'; // replace with your ngrok URL
+const backendUrl = 'https://9c1f-147-175-186-249.ngrok-free.app'; // replace with your ngrok URL
 
 async function fetchClicks() {
     try {
