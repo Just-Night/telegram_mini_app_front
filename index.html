@@ -14,7 +14,7 @@
         function sendAuthData() {
             Telegram.WebApp.ready();
             const initData = Telegram.WebApp.initData;
-            alert(initData);
+            console.log(initData);  // Use console.log instead of alert
             fetch(`${API_URL}/api/v1/auth/`, {
                 method: "POST",
                 headers: {
@@ -22,9 +22,14 @@
                 },
                 body: JSON.stringify({ initData: initData })
             })
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();
+            })
             .then(data => {
-                alert("Data sent successfully! Check the backend logs.");
+                console.log("Data sent successfully! Check the backend logs.");
             })
             .catch(error => {
                 console.error("Error sending auth data:", error);
