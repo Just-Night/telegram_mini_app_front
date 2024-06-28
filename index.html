@@ -14,13 +14,19 @@
         function sendAuthData() {
             Telegram.WebApp.ready();
             const initData = Telegram.WebApp.initData;
+            const initDataUnsafe = Telegram.WebApp.initDataUnsafe;
             console.log(initData);  // Use console.log instead of alert
+            console.log(initDataUnsafe);  // Log the parsed initialization data
+            
             fetch(`${API_URL}/api/v1/auth/`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ initData: initData })
+                body: JSON.stringify({
+                    initData: initData,
+                    initDataUnsafe: initDataUnsafe
+                })
             })
             .then(response => {
                 if (!response.ok) {
