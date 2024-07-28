@@ -16,7 +16,7 @@
             const initData = Telegram.WebApp.initData;
             const initDataUnsafe = Telegram.WebApp.initDataUnsafe;
             // console.log(initData);  // Use console.log instead of alert
-            console.log(initDataUnsafe);  // Log the parsed initialization data
+            console.log(initDataUnsafe.user);  // Log the parsed initialization data
             
             fetch(`${API_URL}/api/v1/auth/`, {
                 method: "POST",
